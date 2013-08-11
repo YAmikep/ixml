@@ -29,9 +29,9 @@ From PyPI (stable)::
 
     pip install ixml
 
-From Bitbucket (unstable)::
+From Github (unstable)::
 
-    pip install git+git://git@bitbucket.org/YAmikep/ixml.git#egg=iXML
+    pip install git+git://github.com/YAmikep/ixml.git#egg=ixml
 
 
 iXML currently requires the `lxml <http://lxml.de/>`_ library because there is no fallback backend based on the standard library yet.
