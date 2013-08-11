@@ -25,8 +25,10 @@ From Bitbucket (unstable)::
     pip install git+git://git@bitbucket.org/YAmikep/ixml.git#egg=iXML
 
 
+As of today, iXML requires the `lxml <http://lxml.de/>`_ library since it is the only implemented backend.
 
-Main API:
+
+Main API
 ---------
 
 - ``ixml.parse(data)``: iterator returning parsing events.
@@ -37,19 +39,16 @@ Notes:
 
 - ``data`` must be a file like object.
 
-- The Python objects yield by ``items`` are constructed from the events by an ``ObjectBuilder`` (``DictObjectBuilder`` by default). Please make your own if you wish as long as it implements the ``ObjectBuilder`` interface (ixml.builders.interface).
+- The Python objects yielded by ``ixml.items`` are constructed from the parsing events by an ``ObjectBuilder`` (``DictObjectBuilder`` by default). Please make your own if you wish as long as it implements the ``ObjectBuilder`` interface (``ixml.builders.interface``).
 
-
-Top-level ``ixml`` module tries to automatically find and import a suitable
-parsing backend. You can also explicitly import a required backend from
-``ixml.backends``.
+- Top-level ``ixml`` module tries to automatically find and import a suitable parsing backend. You can also explicitly import a required backend from ``ixml.backends``.
 
 
 
 Usage and examples
 ------------------
 
-All usage example will be using this XML document:
+All examples will be using this XML document:
 
 .. code:: python
 
@@ -78,7 +77,7 @@ All usage example will be using this XML document:
     </cities>'''
 
 
-- **Using ixml.parse**
+- **ixml.parse**
 
 Using the ``parse`` function, you can react on individual events:
 
@@ -131,9 +130,9 @@ The full output of ``parse`` would be:
         ('cities', u'end', None)
 
 
-- **Using ixml.items**
+- **ixml.items**
 
-Another usage is having ixml yield native Python objects for a specific path with ``items``:
+Another usage is having ixml yields native Python objects for a specific path with ``items``:
 
 .. code:: python
 
@@ -147,7 +146,7 @@ Another usage is having ixml yield native Python objects for a specific path wit
     ...     do_something_with(city)
 
 
-Below are the two 'city' Python objects yield by ``items``. They are constructed as a dict by default. 
+Below are the two 'city' Python objects yielded by ``items``. They are constructed as a dict by default. 
 You can change this behavior by providing another builder class to the ``items`` function.
 
 .. code:: python
@@ -213,6 +212,8 @@ Example of paths:
         <title myAttr="Test">Some text</title>  # => ('rss.title', 'data', 'Some text'), ('rss.title.@myAttr', 'data', 'Test')
     </rss>
 
+3. The value
+
 If there is a value, it will always be a string, None otherwise.
 There is no automatic conversion feature (to int, etc) for now.
 
@@ -224,7 +225,7 @@ iXML can provide several implementation of the parsing by using backends located
 
 - ``lxmliterparse``: wrapper around the well known `iterparse LXML <http://lxml.de/parsing.html#iterparse-and-iterwalk>`_ function.
 
-More backends, especially a fallback backend using the standard library will follow.
+More backends, especially a fallback backend using the standard library will follow. As of today, iXML requires the ``lxml`` library since it is the only implemented backend.
 You can import a specific backend and use it in the same way as the top level library:
 
 .. code:: python
