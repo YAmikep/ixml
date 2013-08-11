@@ -32,9 +32,13 @@ Main API:
 - ``ixml.parse(data)``: iterator returning parsing events.
 
 - ``ixml.items(data, path, builder_klass=DictObjectBuilder)``: iterator returning Python objects found under a specified path.
-    
-The objects are constructed from the events thanks to an ObjectBuilder (DictObjectBuilder by default).
-Please make your own if you wish as long as it implements the ObjectBuilder interface (ixml.builders.interface).
+
+Notes:
+
+- ``data`` must be a file like object.
+
+- The Python objects yield by ``items`` are constructed from the events by an ``ObjectBuilder`` (``DictObjectBuilder`` by default). Please make your own if you wish as long as it implements the ``ObjectBuilder`` interface (ixml.builders.interface).
+
 
 Top-level ``ixml`` module tries to automatically find and import a suitable
 parsing backend. You can also explicitly import a required backend from
