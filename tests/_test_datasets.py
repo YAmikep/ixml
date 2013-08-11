@@ -4,7 +4,7 @@ Define the reusable sets of data to use for testing.
 
 XML_HEADER = """<?xml version="1.0" encoding="utf-8"?>"""
 
-# (name, xml, parse_expected)
+# (name, xml, events_expected, path, objects_expected)
 XML_TEST_DATA_SETS = [
     (
         'simple',
@@ -39,6 +39,7 @@ XML_TEST_DATA_SETS = [
             ('rss.channel', 'end', None),
             ('rss', 'end', None)
         ),
+        'rss.channel.item',
         (
             {'description': 'Description item 1', 'title': 'Title item 1'},
             {'description': 'Description item 2', 'title': 'Title item 2'},
@@ -85,6 +86,7 @@ XML_TEST_DATA_SETS = [
             ('rss.channel', 'end', None),
             ('rss', 'end', None)
         ),
+        'rss.channel.item',
         (
             {
                 '@name': 'i1',
@@ -166,6 +168,7 @@ XML_TEST_DATA_SETS = [
             ('rss.channel', 'end', None),
             ('rss', 'end', None)
         ),
+        'rss.channel.item',
         (
             {
                 '@name': 'i1',
