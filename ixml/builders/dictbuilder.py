@@ -2,6 +2,7 @@ from .interface import ObjectBuilder
 
 
 class DictObjectBuilder(ObjectBuilder):
+
     """
     Incrementally builds a dict object from XML parser events.
 
@@ -50,9 +51,10 @@ class DictObjectBuilder(ObjectBuilder):
     True
 
     """
+
     def _make_key(self, path):
         if self.roots:
-            return path.replace(self.roots[-1], '') # removes the root
+            return path.replace(self.roots[-1], '')  # removes the root
         return path
 
     def __init__(self, root=None):
@@ -73,7 +75,7 @@ class DictObjectBuilder(ObjectBuilder):
             if isinstance(container[key], list):
                 container[key].append(value)
             else:
-                container[key] = [container[key], value]                
+                container[key] = [container[key], value]
         else:
             container[key] = value
 
@@ -90,6 +92,6 @@ class DictObjectBuilder(ObjectBuilder):
             self.containers.append(new_container)
             self.roots.append('{}.'.format(path))
 
-        elif event =='end':
+        elif event == 'end':
             self.containers.pop()
             self.roots.pop()

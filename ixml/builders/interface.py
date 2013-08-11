@@ -1,4 +1,5 @@
 class ObjectBuilder(object):
+
     """
     Provides a uniform API to incrementally build python objects from XML parser events.
 
@@ -6,6 +7,7 @@ class ObjectBuilder(object):
     The object being built is available at any time from the ``value`` attribute.
 
     """
+
     def __init__(self, root=None):
         raise NotImplementedError()
 

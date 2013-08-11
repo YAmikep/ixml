@@ -140,13 +140,14 @@ XML_TEST_DATA_SETS = [
             ('rss.channel.item.title', 'data', 'Title item 1'),
             ('rss.channel.item.description', 'start', None),
             ('rss.channel.item.description.@nb', 'data', '2'),
-            ('rss.channel.item.description.short', 'data', 'Desc item 1 short'),
+            ('rss.channel.item.description.short',
+             'data', 'Desc item 1 short'),
             ('rss.channel.item.description.long', 'data', 'Desc item 1 long'),
             ('rss.channel.item.description', 'end', None),
             ('rss.channel.item.category', 'data', 'Category 1 item 1'),
             ('rss.channel.item.category.@code', 'data', '1'),
             ('rss.channel.item.category', 'data', 'Category 2 item 1'),
-            ('rss.channel.item.category.@code', 'data', '2'),            
+            ('rss.channel.item.category.@code', 'data', '2'),
             ('rss.channel.item', 'end', None),
 
             ('rss.channel.item', 'start', None),
@@ -154,8 +155,10 @@ XML_TEST_DATA_SETS = [
             ('rss.channel.item.ns2:title', 'data', 'Title item 2'),
             ('rss.channel.item.ns2:description', 'start', None),
             ('rss.channel.item.ns2:description.@nb', 'data', '2'),
-            ('rss.channel.item.ns2:description.short', 'data', 'Desc item 2 short'),
-            ('rss.channel.item.ns2:description.long', 'data', 'Desc item 2 long'),
+            ('rss.channel.item.ns2:description.short',
+             'data', 'Desc item 2 short'),
+            ('rss.channel.item.ns2:description.long',
+             'data', 'Desc item 2 long'),
             ('rss.channel.item.ns2:description', 'end', None),
             ('rss.channel.item.ns2:category', 'data', 'Category 1 item 2'),
             ('rss.channel.item.ns2:category.@code', 'data', '1'),
@@ -163,7 +166,7 @@ XML_TEST_DATA_SETS = [
             ('rss.channel.item.ns2:category.@code', 'data', '2'),
             ('rss.channel.item.ns2:category', 'data', 'Category 3 item 2'),
             ('rss.channel.item.ns2:category.@code', 'data', '3'),
-            ('rss.channel.item', 'end', None),            
+            ('rss.channel.item', 'end', None),
 
             ('rss.channel', 'end', None),
             ('rss', 'end', None)
@@ -173,11 +176,11 @@ XML_TEST_DATA_SETS = [
             {
                 '@name': 'i1',
                 'category': [
-                    'Category 1 item 1', 
+                    'Category 1 item 1',
                     'Category 2 item 1'
                 ],
                 'category.@code': [
-                    '1', 
+                    '1',
                     '2'
                 ],
                 'description': {
@@ -212,6 +215,8 @@ XML_TEST_DATA_SETS = [
 
 
 import pkgutil
+
+
 def iter_import_modules(package):
     prefix = package.__name__ + "."
     for importer, modname, ispkg in pkgutil.iter_modules(package.__path__, prefix):
@@ -222,19 +227,21 @@ import ixml.backends
 package = ixml.backends
 all_backends = list(iter_import_modules(package))
 
+
 def load_backend_tests(backend):
     nb_datasets = len(XML_TEST_DATA_SETS)
     return [
         (
             '{}_{}'.format(
-                backend.__name__.replace('.','_'),
-                XML_TEST_DATA_SETS[i][0] # name
+                backend.__name__.replace('.', '_'),
+                XML_TEST_DATA_SETS[i][0]  # name
             ),
             backend,
             i
         )
         for i in xrange(nb_datasets)
     ]
+
 
 def load_all_backends_tests():
     tests = []

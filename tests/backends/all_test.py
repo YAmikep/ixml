@@ -9,14 +9,15 @@ from .. import _test_datasets as tds
 
 
 class APIBackendTests(unittest.TestCase):
+
     """
     Tests all the backends.
 
-    """ 
+    """
     @parameterized.expand(tds.load_all_backends_tests)
     def test_parse(self, name, backend, i):
         testset = tds.XML_TEST_DATA_SETS[i]
-        
+
         data = StringIO(testset[1])
         expected = testset[2]
 
@@ -29,7 +30,7 @@ class APIBackendTests(unittest.TestCase):
     @parameterized.expand(tds.load_all_backends_tests)
     def test_items(self, name, backend, i):
         testset = tds.XML_TEST_DATA_SETS[i]
-        
+
         data = StringIO(testset[1])
         path = testset[3]
         expected = testset[4]

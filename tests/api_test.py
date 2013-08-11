@@ -11,6 +11,7 @@ import ixml
 
 
 class APITests(unittest.TestCase):
+
     """
     Tests the API from ixml which must not failed no matter what backend 
     dependencies are installed (fallback to standard library).
@@ -21,7 +22,7 @@ class APITests(unittest.TestCase):
     @parameterized.expand(tds.load_backend_tests(backend))
     def test_parse(self, name, backend, i):
         testset = tds.XML_TEST_DATA_SETS[i]
-        
+
         data = StringIO(testset[1])
         expected = testset[2]
 
@@ -34,7 +35,7 @@ class APITests(unittest.TestCase):
     @parameterized.expand(tds.load_backend_tests(backend))
     def test_items(self, name, backend, i):
         testset = tds.XML_TEST_DATA_SETS[i]
-        
+
         data = StringIO(testset[1])
         path = testset[3]
         expected = testset[4]
@@ -43,4 +44,4 @@ class APITests(unittest.TestCase):
         self.maxDiff = None
 
         results = tuple(backend.items(data, path))
-        self.assertEquals(results, expected)        
+        self.assertEquals(results, expected)

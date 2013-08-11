@@ -9,11 +9,13 @@ __all__ = ['parse', 'items']
 
 # Params to use in the lxml parser.
 # strip_cdata: replace CDATA sections by normal text content.
-# remove_blank_text: discard blank text nodes between tags, also known as ignorable whitespace.
+# remove_blank_text: discard blank text nodes between tags, also known as
+# ignorable whitespace.
 _parser_params = {
     'strip_cdata': False,
     'remove_blank_text': True,
 }
+
 
 def parse(data, parser_kwargs=_parser_params):
 
@@ -24,7 +26,7 @@ def parse(data, parser_kwargs=_parser_params):
 
     # A stack to store the tags while parsing to track the path
     tags = []
-    
+
     # Variable to store the previous event
     prev = None
 
@@ -45,12 +47,13 @@ def parse(data, parser_kwargs=_parser_params):
             # Update prev
             path = '.'.join(tags)
             prev = (path, event, elem.text, list(iter_attributes(path, elem)))
-        
+
         elif event == 'end':
 
             path = '.'.join(tags)
 
-            # If the previous 'start' event has the same path then it is a leaf: yield the value
+            # If the previous 'start' event has the same path then it is a
+            # leaf: yield the value
             if prev is not None and prev[0] == path:
                 yield path, 'data', elem.text
                 # Yield the attributes
@@ -59,16 +62,18 @@ def parse(data, parser_kwargs=_parser_params):
                 # Delete it
                 prev = None
 
-            # Otherwise yield the normal 'end' event                    
+            # Otherwise yield the normal 'end' event
             else:
                 yield path, event, elem.text
 
             # Update the tags
             tags.pop()
 
+
 def iter_attributes(path, el):
     for name, value in el.attrib.iteritems():
         yield '{}.@{}'.format(path, name), 'data', value
+
 
 def items(data, path, builder_klass=DictObjectBuilder):
 
@@ -94,7 +99,7 @@ def items(data, path, builder_klass=DictObjectBuilder):
 
                     # Yield the constructed object
                     yield builder.value
-                
+
                 else:
                     yield value
 
@@ -102,10 +107,10 @@ def items(data, path, builder_klass=DictObjectBuilder):
         pass
 
 
-###########
+#
 # HELPERS
-###########
-    
+#
+
 def fast_iter(context):
     """
     A fast way to iter since the elements are deleted right after their 'end' event is yield.
@@ -118,13 +123,15 @@ def fast_iter(context):
         if event == 'end':
             clear_element(elem)
     # Make sure all elements are cleared
-    context.root.clear()   
+    context.root.clear()
     del context
+
 
 def clear_element(el):
     el.clear()  # clean up the element and childrens
     while el.getprevious() is not None:
         del el.getparent()[0]  # clean up preceding siblings
+
 
 def ns_prefixed_tag(el=None, prefix=None, tag=None):
     """Returns a namespace prefixed tag given an Element or its prefix and tag values.
@@ -180,7 +187,7 @@ def ns_prefixed_tag(el=None, prefix=None, tag=None):
     # It is an Element, do a recursive call
     if el is not None:
         return ns_prefixed_tag(prefix=el.prefix, tag=el.tag)
-    
+
     # Removes namespace in {namespace}tag_name
     tag_name = get_tag_name(tag)
 
@@ -189,7 +196,8 @@ def ns_prefixed_tag(el=None, prefix=None, tag=None):
         return tag_name
 
     # Prefix and tag name
-    return '{0}:{1}'.format(prefix, tag_name)        
+    return '{0}:{1}'.format(prefix, tag_name)
+
 
 def get_tag_name(tag):
     """Returns only the tag name of:
