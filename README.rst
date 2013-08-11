@@ -25,7 +25,7 @@ From Bitbucket (unstable)::
     pip install git+git://git@bitbucket.org/YAmikep/ixml.git#egg=iXML
 
 
-As of today, iXML requires the `lxml <http://lxml.de/>`_ library since it is the only implemented backend.
+iXML currently requires the `lxml <http://lxml.de/>`_ library because there is no fallback backend based on the standard library.
 
 
 Main API
@@ -39,7 +39,7 @@ Notes:
 
 - ``data`` must be a file like object.
 
-- The Python objects yielded by ``ixml.items`` are constructed from the parsing events by an ``ObjectBuilder`` (``DictObjectBuilder`` by default). Please make your own if you wish as long as it implements the ``ObjectBuilder`` interface (``ixml.builders.interface``).
+- The Python objects yielded by ``ixml.items`` are constructed from the parsing events by an ``ObjectBuilder`` (``DictObjectBuilder`` by default). Please make your own if you wish as long as it implements the ``ObjectBuilder`` interface (see ``ixml.builders.interface``).
 
 - Top-level ``ixml`` module tries to automatically find and import a suitable parsing backend. You can also explicitly import a required backend from ``ixml.backends``.
 
@@ -100,7 +100,7 @@ Using the ``parse`` function, you can react on individual events:
     set(['French', 'English']) set(['USA', 'France'])
 
 
-The full output of ``parse`` would be:
+Below are all the parsing events from ``parse``:
 
 .. code:: python
 
@@ -132,7 +132,7 @@ The full output of ``parse`` would be:
 
 - **ixml.items**
 
-Another usage is having ixml yields native Python objects for a specific path with ``items``:
+Another usage is having iXML yields native Python objects for a specific path with ``items``:
 
 .. code:: python
 
@@ -146,7 +146,7 @@ Another usage is having ixml yields native Python objects for a specific path wi
     ...     do_something_with(city)
 
 
-Below are the two 'city' Python objects yielded by ``items``. They are constructed as a dict by default. 
+Below are the two "city" Python objects created. They are constructed as a dict by default. 
 You can change this behavior by providing another builder class to the ``items`` function.
 
 .. code:: python
@@ -175,27 +175,30 @@ You can change this behavior by providing another builder class to the ``items``
 Parsing events
 --------------
 
-Parsing events contain the XML tree context (path), an event and a value: ``(path, event, value)``.
+Parsing events contain the XML tree context (path), an event and a value::
 
-1. The tree context or path
+    (path, event, value)
+
+
+1. **The tree context (or path)**
 
 It is a simplified path format that:
 
 - uses dots to define different levels
-- uses namespace prefixes in the tag name instead of the URI
+- uses namespace prefixes in the tag name
 - ignores default namespaces (handled automatically behind the scene)
 - uses @ for attributes
 
-Example of paths:
+Examples:
 
 - rss.channel.item
 - rss.channel.item.@myAttr
 - rss.channel.ns1:item.title
 
 
-2. The events
+2. **The events**
 
-- 'start' and 'end' for containers:
+- "start" and "end" for containers:
 
 .. code:: python
 
@@ -204,7 +207,7 @@ Example of paths:
     </rss>  # => ('rss', 'end', None)
 
 
-- 'data' for leaves and attributes:
+- "data" for leaves and attributes:
 
 .. code:: python
 
@@ -212,10 +215,11 @@ Example of paths:
         <title myAttr="Test">Some text</title>  # => ('rss.title', 'data', 'Some text'), ('rss.title.@myAttr', 'data', 'Test')
     </rss>
 
-3. The value
+
+3. **The value**
 
 If there is a value, it will always be a string, None otherwise.
-There is no automatic conversion feature (to int, etc) for now.
+There is currently no automatic conversion feature (to int, etc).
 
 
 Backends
@@ -235,13 +239,18 @@ You can import a specific backend and use it in the same way as the top level li
 
 Importing the top level library as ``import ixml`` tries to import all backends in order.
 
-As of today, iXML requires the ``lxml`` library since it is the only implemented backend.
-More backends, especially a fallback backend using the standard library will follow. 
+iXML currently requires the `lxml <http://lxml.de/>`_ library because there is no fallback backend based on the standard library yet.
 
 
 
 ObjecBuilder
 ------------
+The ``items`` function uses an ObjectBuilder to build an object while parsing the data.
+
+The events are passed into the ``event`` function of the builder that accepts three parameters: path, event type and value.
+The object being built is available at any time from the ``value`` attribute.
+
+You can make your own builder as long as it implements the ObjectBuilder interface (see ixml/builders/interface).
 
 
 
