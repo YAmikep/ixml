@@ -222,7 +222,7 @@ Backends
 
 iXML can provide several implementation of the parsing by using backends located in ixml/backends:
 
-- ``lxmliterparse``: wrapper around the well known `iterparse LXML <http://lxml.de/parsing.html#iterparse-and-iterwalk>` function.
+- ``lxmliterparse``: wrapper around the well known `iterparse LXML <http://lxml.de/parsing.html#iterparse-and-iterwalk>`_ function.
 
 More backends, especially a fallback backend using the standard library will follow.
 You can import a specific backend and use it in the same way as the top level library:
