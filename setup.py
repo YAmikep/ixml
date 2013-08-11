@@ -17,9 +17,10 @@ setup(
     url='https://bitbucket.org/YAmikep/ixml',
     author="Michael Palumbo",
     author_email="michael.palumbo87@gmail.com",
-    packages=find_packages(exclude=['tests']),
+    packages=find_packages(exclude=('tests', 'tests.*')), # tests.* is important to exclude all packages under tests
     include_package_data=True,
-    classifiers=[
+    package_data={'': ['AUTHORS', 'LICENSE']},    
+    classifiers=[ # All possible values here: https://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
