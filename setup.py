@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-from ixml import __version__
+from ixml.version import __version__
 
 with open('README.rst') as f:
     long_description = f.read()
