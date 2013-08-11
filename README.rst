@@ -74,6 +74,28 @@ All usage example will be using this XML document::
     </cities>'''
 
 
+Use
+---
+
+Construct:
+
+.. code:: python
+
+    >>> from purl import URL
+
+    # String constructor
+    >>> from_str = URL('https://www.google.com/search?q=testing')
+
+    # Keyword constructor
+    >>> from_kwargs = URL(scheme='https', host='www.google.com', path='/search', query='q=testing')
+
+    # Combine
+    >>> from_combo = URL('https://www.google.com').path('search').query_param('q', 'testing')
+
+URL objects are immutable - all mutator methods return a new instance.
+
+
+
 - Using `ixml.parse(data)``
 
 Using the ``parse`` function, you can react on individual events::
@@ -83,10 +105,10 @@ Using the ``parse`` function, you can react on individual events::
     >>> import ixml
     >>> from StringIO import StringIO
     
-    # The parse function takes a file like object
+    >>> # The parse function takes a file like object
     >>> data = StringIO(XML)
 
-    # Extract only the languages and the countries
+    >>> # Extract only the languages and the countries
     >>> languages, countries = set(), set()
     >>> for path, event, value in ixml.parse(data):
     ...     if path == 'cities.city.language':
