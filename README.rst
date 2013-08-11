@@ -242,3 +242,21 @@ More backends, especially a fallback backend using the standard library will fol
 
 ObjecBuilder
 ------------
+
+
+
+Contribute
+----------
+
+Clone and install testing dependencies::
+
+    $ python setup.py develop 
+    $ pip install -r requirements_tests.txt
+
+Ensure tests pass::
+
+    $ ./runtests.sh
+
+Or using tox::
+
+    $ tox
