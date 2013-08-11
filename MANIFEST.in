@@ -1,0 +1,11 @@
+include *.rst
+include LICENSE
+include AUTHORS
+recursive-include docs *
+
+exclude requirements.txt
+
+recursive-exclude tests *
+exclude requirements_tests.txt
+exclude runtests.sh
+exclude tox.ini
