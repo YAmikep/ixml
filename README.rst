@@ -225,7 +225,6 @@ iXML can provide several implementation of the parsing by using backends located
 
 - ``lxmliterparse``: wrapper around the well known `iterparse LXML <http://lxml.de/parsing.html#iterparse-and-iterwalk>`_ function.
 
-More backends, especially a fallback backend using the standard library will follow. As of today, iXML requires the ``lxml`` library since it is the only implemented backend.
 You can import a specific backend and use it in the same way as the top level library:
 
 .. code:: python
@@ -234,10 +233,11 @@ You can import a specific backend and use it in the same way as the top level li
     >>> for path, event, value in ixml.parse(...):
     ...     # ... 
 
-Importing the top level library as ``import ixml`` tries to import all backends
-in order, so it either finds an appropriate version of LXML or falls back to the
-Python backend if none is found.
-For now, it will just raise an exception if LXML cannot be found.
+Importing the top level library as ``import ixml`` tries to import all backends in order.
+
+As of today, iXML requires the ``lxml`` library since it is the only implemented backend.
+More backends, especially a fallback backend using the standard library will follow. 
+
 
 
 ObjecBuilder
