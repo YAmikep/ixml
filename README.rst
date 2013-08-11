@@ -45,9 +45,11 @@ parsing backend. You can also explicitly import a required backend from
 Usage and examples
 ------------------
 
-All usage example will be using this XML document::
+All usage example will be using this XML document.
 
-    XML = '''<?xml version="1.0" encoding="utf-8"?>
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="utf-8"?>
     <cities>
         <city name="Paris">
             <country>France</country>
@@ -69,7 +71,7 @@ All usage example will be using this XML document::
                 <museum>Old Red Museum</museum>
             </attractions>          
         </city> 
-    </cities>'''
+    </cities>
 
 
 1. Using the ``parse`` function, you can react on individual events::
