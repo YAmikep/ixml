@@ -78,7 +78,7 @@ All usage example will be using this XML document:
     </cities>'''
 
 
-- **Using `ixml.parse(data)``**
+- **Using ixml.parse**
 
 Using the ``parse`` function, you can react on individual events:
 
@@ -131,7 +131,7 @@ The full output of ``parse`` would be:
         ('cities', u'end', None)
 
 
-- **Using ``ixml.items(data, path, builder_klass=DictObjectBuilder)``**
+- **Using ixml.items**
 
 Another usage is having ixml yield native Python objects for a specific path with ``items``:
 
@@ -178,13 +178,14 @@ Parsing events
 
 Parsing events contain the XML tree context (path), an event and a value: ``(path, event, value)``.
 
-The tree context is a simplified path format that:
+1. The tree context or path
+
+It is a simplified path format that:
 
 - uses dots to define different levels
 - uses namespace prefixes in the tag name instead of the URI
 - ignores default namespaces (handled automatically behind the scene)
 - uses @ for attributes
-
 
 Example of paths:
 
@@ -193,16 +194,20 @@ Example of paths:
 - rss.channel.ns1:item.title
 
 
-The events are:
+2. The events
 
-- 'start' and 'end' for containers::
+- 'start' and 'end' for containers:
+
+.. code:: python
 
     <rss>   # => ('rss', 'start', None)
         <...>
     </rss>  # => ('rss', 'end', None)
 
 
-- 'data' for leaves and attributes::
+- 'data' for leaves and attributes:
+
+.. code:: python
 
     <rss>   
         <title myAttr="Test">Some text</title>  # => ('rss.title', 'data', 'Some text'), ('rss.title.@myAttr', 'data', 'Test')
@@ -215,17 +220,18 @@ There is no automatic conversion feature (to int, etc) for now.
 Backends
 --------
 
-iXML can provide several implementation of the parsing by using backends located in ixml/backends::
+iXML can provide several implementation of the parsing by using backends located in ixml/backends:
 
-- ``lxmliterparse``: wrapper around the well known iterparse LXML function.
+- ``lxmliterparse``: wrapper around the well known `iterparse LXML <http://lxml.de/parsing.html#iterparse-and-iterwalk>` function.
 
 More backends, especially a fallback backend using the standard library will follow.
-You can import a specific backend and use it in the same way as the top level library::
+You can import a specific backend and use it in the same way as the top level library:
 
-    import ixml.backends.lxmliterparse as ixml
+.. code:: python
 
-    for path, event, value in ixml.parse(...):
-        # ...
+    >>> import ixml.backends.lxmliterparse as ixml
+    >>> for path, event, value in ixml.parse(...):
+    ...     # ... 
 
 Importing the top level library as ``import ixml`` tries to import all backends
 in order, so it either finds an appropriate version of LXML or falls back to the
