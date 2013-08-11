@@ -47,7 +47,9 @@ Usage and examples
 
 All usage example will be using this XML document::
 
-    XML = '''<?xml version="1.0" encoding="utf-8"?>
+.. code:: python
+
+    >>> XML = '''<?xml version="1.0" encoding="utf-8"?>
     <cities>
         <city name="Paris">
             <country>France</country>
@@ -76,19 +78,23 @@ All usage example will be using this XML document::
 
 Using the ``parse`` function, you can react on individual events::
 
-    import ixml
-    from StringIO import StringIO
+.. code:: python
 
-    data = StringIO(XML)
+    >>> import ixml
+    >>> from StringIO import StringIO
+    
+    # The parse function takes a file like object
+    >>> data = StringIO(XML)
 
     # Extract only the languages and the countries
-    languages, countries = set(), set()
-    for path, event, value in ixml.parse(data):
-        if path == 'cities.city.language':
-            languages.add(value)
-        elif path == 'cities.city.country':
-            countries.add(value)
-
+    >>> languages, countries = set(), set()
+    >>> for path, event, value in ixml.parse(data):
+    ...     if path == 'cities.city.language':
+    ...         languages.add(value)
+    ...     elif path == 'cities.city.country':
+    ...         countries.add(value)
+    >>> print languages, countries
+    set(['French', 'English']) set(['USA', 'France'])
 
 The full output of ``parse`` would be::
 
