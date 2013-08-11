@@ -32,8 +32,9 @@ Main API:
 - ``ixml.parse(data)``: iterator returning parsing events.
 
 - ``ixml.items(data, path, builder_klass=DictObjectBuilder)``: iterator returning Python objects found under a specified path.
-    The objects are constructed from the events thanks to an ObjectBuilder (DictObjectBuilder by default).
-    Please make your own if you wish as long as it implements the ObjectBuilder interface (ixml.builders.interface).
+    
+The objects are constructed from the events thanks to an ObjectBuilder (DictObjectBuilder by default).
+Please make your own if you wish as long as it implements the ObjectBuilder interface (ixml.builders.interface).
 
 Top-level ``ixml`` module tries to automatically find and import a suitable
 parsing backend. You can also explicitly import a required backend from
@@ -86,32 +87,32 @@ All usage example will be using this XML document::
         elif path == 'cities.city.country':
             countries.add(value)
 
-The full output of ``parse`` would be::
+    The full output of ``parse`` would be::
 
-    ('cities', u'start', None)
-    ('cities.city', u'start', None)
-    ('cities.city.@name', 'data', 'Paris')
-    ('cities.city.country', 'data', 'France')
-    ('cities.city.language', 'data', 'French')
-    ('cities.city.attractions', u'start', None)
-    ('cities.city.attractions.monument', 'data', 'Tour Eiffel')
-    ('cities.city.attractions.monument', 'data', 'Arc de triomphe')
-    ('cities.city.attractions.museum', 'data', 'Musee du Louvre')
-    ('cities.city.attractions.museum', 'data', 'Musee du Quai Branly')
-    ('cities.city.attractions', u'end', None)
-    ('cities.city', u'end', None)
-    ('cities.city', u'start', None)
-    ('cities.city.@name', 'data', 'Dallas')
-    ('cities.city.country', 'data', 'USA')
-    ('cities.city.language', 'data', 'English')
-    ('cities.city.attractions', u'start', None)
-    ('cities.city.attractions.monument', 'data', 'Bank America Plaza')
-    ('cities.city.attractions.monument', 'data', 'Dallas Theatre Center')
-    ('cities.city.attractions.museum', 'data', 'Dallas Museum of Art')
-    ('cities.city.attractions.museum', 'data', 'Old Red Museum')
-    ('cities.city.attractions', u'end', None)
-    ('cities.city', u'end', None)
-    ('cities', u'end', None)
+        ('cities', u'start', None)
+        ('cities.city', u'start', None)
+        ('cities.city.@name', 'data', 'Paris')
+        ('cities.city.country', 'data', 'France')
+        ('cities.city.language', 'data', 'French')
+        ('cities.city.attractions', u'start', None)
+        ('cities.city.attractions.monument', 'data', 'Tour Eiffel')
+        ('cities.city.attractions.monument', 'data', 'Arc de triomphe')
+        ('cities.city.attractions.museum', 'data', 'Musee du Louvre')
+        ('cities.city.attractions.museum', 'data', 'Musee du Quai Branly')
+        ('cities.city.attractions', u'end', None)
+        ('cities.city', u'end', None)
+        ('cities.city', u'start', None)
+        ('cities.city.@name', 'data', 'Dallas')
+        ('cities.city.country', 'data', 'USA')
+        ('cities.city.language', 'data', 'English')
+        ('cities.city.attractions', u'start', None)
+        ('cities.city.attractions.monument', 'data', 'Bank America Plaza')
+        ('cities.city.attractions.monument', 'data', 'Dallas Theatre Center')
+        ('cities.city.attractions.museum', 'data', 'Dallas Museum of Art')
+        ('cities.city.attractions.museum', 'data', 'Old Red Museum')
+        ('cities.city.attractions', u'end', None)
+        ('cities.city', u'end', None)
+        ('cities', u'end', None)
 
 
 2. Another usage is having ixml yield native Python objects for a specific path with ``items``::
@@ -124,8 +125,8 @@ The full output of ``parse`` would be::
     for city in ixml.items(data, 'cities.city'):
         do_something_with(city)
 
-Below are the two 'city' Python objects yield by ``items``. They are constructed as a dict by default. 
-You can change this behavior by providing another builder class to the ``items`` function::
+    Below are the two 'city' Python objects yield by ``items``. They are constructed as a dict by default. 
+    You can change this behavior by providing another builder class to the ``items`` function::
 
     {   
         'country': 'France', 
