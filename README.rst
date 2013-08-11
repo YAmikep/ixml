@@ -25,7 +25,7 @@ From Bitbucket (unstable)::
     pip install git+git://git@bitbucket.org/YAmikep/ixml.git#egg=iXML
 
 
-iXML currently requires the `lxml <http://lxml.de/>`_ library because there is no fallback backend based on the standard library.
+iXML currently requires the `lxml <http://lxml.de/>`_ library because there is no fallback backend based on the standard library yet.
 
 
 Main API
