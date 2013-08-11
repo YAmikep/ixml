@@ -18,7 +18,7 @@ setup(
     author="Michael Palumbo",
     author_email="michael.palumbo87@gmail.com",
     packages=find_packages(exclude=('tests', 'tests.*')), # tests.* is important to exclude all packages under tests
-    install_requires=['lxml'],
+    #install_requires=['lxml'],
     include_package_data=True,
     package_data={'': ['AUTHORS', 'LICENSE']},    
     classifiers=[ # All possible values here: https://pypi.python.org/pypi?%3Aaction=list_classifiers
