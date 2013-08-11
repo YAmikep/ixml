@@ -72,7 +72,9 @@ All usage example will be using this XML document::
     </cities>'''
 
 
-- Using the ``parse`` function, you can react on individual events::
+- Using `ixml.parse(data)``
+
+Using the ``parse`` function, you can react on individual events::
 
     import ixml
     from StringIO import StringIO
@@ -87,8 +89,8 @@ All usage example will be using this XML document::
         elif path == 'cities.city.country':
             countries.add(value)
 
-..
-    The full output of ``parse`` would be::
+
+The full output of ``parse`` would be::
 
         ('cities', u'start', None)
         ('cities.city', u'start', None)
@@ -116,7 +118,9 @@ All usage example will be using this XML document::
         ('cities', u'end', None)
 
 
-2. Another usage is having ixml yield native Python objects for a specific path with ``items``::
+- ``ixml.items(data, path, builder_klass=DictObjectBuilder)``
+
+Another usage is having ixml yield native Python objects for a specific path with ``items``::
 
     import ixml
     from StringIO import StringIO
@@ -126,8 +130,9 @@ All usage example will be using this XML document::
     for city in ixml.items(data, 'cities.city'):
         do_something_with(city)
 
-    Below are the two 'city' Python objects yield by ``items``. They are constructed as a dict by default. 
-    You can change this behavior by providing another builder class to the ``items`` function::
+
+Below are the two 'city' Python objects yield by ``items``. They are constructed as a dict by default. 
+You can change this behavior by providing another builder class to the ``items`` function::
 
     {   
         'country': 'France', 
@@ -138,7 +143,6 @@ All usage example will be using this XML document::
             'monument': ['Tour Eiffel', 'Arc de triomphe']
         }
     }
-
     {
         'country': 'USA',
         '@name': 'Dallas',
