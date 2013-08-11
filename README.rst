@@ -45,7 +45,7 @@ parsing backend. You can also explicitly import a required backend from
 Usage and examples
 ------------------
 
-All usage example will be using this XML document::
+All usage example will be using this XML document:
 
 .. code:: python
 
@@ -74,7 +74,7 @@ All usage example will be using this XML document::
     </cities>'''
 
 
-- Using `ixml.parse(data)``
+- **Using `ixml.parse(data)``**
 
 Using the ``parse`` function, you can react on individual events:
 
@@ -97,7 +97,9 @@ Using the ``parse`` function, you can react on individual events:
     set(['French', 'English']) set(['USA', 'France'])
 
 
-The full output of ``parse`` would be::
+The full output of ``parse`` would be:
+
+.. code:: python
 
         ('cities', u'start', None)
         ('cities.city', u'start', None)
@@ -125,21 +127,26 @@ The full output of ``parse`` would be::
         ('cities', u'end', None)
 
 
-- ``ixml.items(data, path, builder_klass=DictObjectBuilder)``
+- **Using ``ixml.items(data, path, builder_klass=DictObjectBuilder)``**
 
-Another usage is having ixml yield native Python objects for a specific path with ``items``::
+Another usage is having ixml yield native Python objects for a specific path with ``items``:
 
-    import ixml
-    from StringIO import StringIO
+.. code:: python
 
-    data = StringIO(XML)
+    >>> import ixml
+    >>> from StringIO import StringIO
+    
+    # The items function takes a file like object
+    >>> data = StringIO(XML)
 
-    for city in ixml.items(data, 'cities.city'):
-        do_something_with(city)
+    >>> for city in ixml.items(data, 'cities.city'):
+    ...     do_something_with(city)
 
 
 Below are the two 'city' Python objects yield by ``items``. They are constructed as a dict by default. 
-You can change this behavior by providing another builder class to the ``items`` function::
+You can change this behavior by providing another builder class to the ``items`` function.
+
+.. code:: python
 
     {   
         'country': 'France', 
