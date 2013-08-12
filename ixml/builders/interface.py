@@ -1,4 +1,4 @@
-class ObjectBuilder(object):
+class ObjectBuilder(object):  # pragma: no cover
 
     """
     Provides a uniform API to incrementally build python objects from XML parser events.

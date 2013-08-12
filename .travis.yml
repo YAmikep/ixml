@@ -7,6 +7,6 @@ install:
   - "pip install python-coveralls"
   - "python setup.py develop"
 script:
-  - "nosetests --with-cov --cover-erase --with-doctest"
+  - "nosetests --with-doctest --with-cov --cover-erase --cov-report term-missing "
 after_success:
   - "coveralls"

@@ -6,7 +6,7 @@ try:
     # Use LXML: the Pythonic binding for the C libraries libxml2 and libxslt.
     # Known as the fastest XML library in python
     import ixml.backends.lxmliterparse as _backend
-except ImportError:
+except ImportError: # pragma: no cover
     # Awaiting a real fallback backend, this makes pip installing works.
     class FakeFallbackBackend(object):
         @staticmethod
