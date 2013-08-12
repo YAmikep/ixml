@@ -52,19 +52,19 @@ class DictObjectBuilder(ObjectBuilder):
 
     """
 
-    def _make_key(self, path):
-        if self.roots:
-            return path.replace(self.roots[-1], '')  # removes the root
-        return path
-
     def __init__(self, root=None):
-
+        
         self.roots = []
         if root is not None:
             self.roots.append('{}.'.format(root))
 
         self.value = {}  # The main build object
         self.containers = [self.value]
+
+    def _make_key(self, path):
+        if self.roots:
+            return path.replace(self.roots[-1], '')  # removes the root
+        return path
 
     def _handle(self, path, value):
         key = self._make_key(path)
