@@ -8,6 +8,9 @@ iXML is an iterative event-driven XML parser with a standard Python iterator int
 .. image:: https://secure.travis-ci.org/YAmikep/ixml.png
     :target: https://travis-ci.org/YAmikep/ixml
 
+.. image:: https://coveralls.io/repos/YAmikep/ixml/badge.png
+   :target: https://coveralls.io/r/YAmikep/ixml  
+
 .. image:: https://pypip.in/v/ixml/badge.png
     :target: https://crate.io/packages/ixml/
 
