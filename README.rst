@@ -122,10 +122,10 @@ Below are all the parsing events from ``parse``:
         ('cities.city.country', 'data', 'France')
         ('cities.city.language', 'data', 'French')
         ('cities.city.attractions', u'start', None)
-        ('cities.city.attractions.monument', 'data', 'Tour Eiffel')
-        ('cities.city.attractions.monument', 'data', 'Arc de triomphe')
-        ('cities.city.attractions.museum', 'data', 'Musee du Louvre')
-        ('cities.city.attractions.museum', 'data', 'Musee du Quai Branly')
+        ('cities.city.attractions.monument', 'data', 'Eiffel Tower')
+        ('cities.city.attractions.monument', 'data', 'Triumphal Arch')
+        ('cities.city.attractions.museum', 'data', 'Louvre Museum')
+        ('cities.city.attractions.museum', 'data', 'Quai Branly Museum')
         ('cities.city.attractions', u'end', None)
         ('cities.city', u'end', None)
         ('cities.city', u'start', None)
@@ -168,8 +168,8 @@ You can change this behavior by providing another builder class to the ``items``
         '@name': 'Paris', 
         'language': 'French', 
         'attractions': {
-            'museum': ['Musee du Louvre', 'Musee du Quai Branly'],
-            'monument': ['Tour Eiffel', 'Arc de triomphe']
+            'museum': ['Louvre Museum', 'Quai Branly Museum'],
+            'monument': ['Eiffel Tower', 'Triumphal Arch']
         }
     }
     {
