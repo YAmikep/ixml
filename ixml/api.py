@@ -2,10 +2,15 @@
 See README.rst for further information
 
 """
+
+# Define the API
+__all__ = ['parse', 'items']
+
+
 try:
     # Use LXML: the Pythonic binding for the C libraries libxml2 and libxslt.
     # Known as the fastest XML library in python
-    import ixml.backends.lxmliterparse as _backend
+    import ixml.backends.lxmliterparse as backend
 except ImportError: # pragma: no cover
     # Awaiting a real fallback backend, this makes pip installing works.
     class FakeFallbackBackend(object):
@@ -18,11 +23,11 @@ except ImportError: # pragma: no cover
             raise Exception(
                 'There is currently only a lxml backend so you must install lxml to use it.')
 
-    _backend = FakeFallbackBackend
+    backend = FakeFallbackBackend
 
     # TODO: direct binding to the C libraries to avoid unused intermediate Element objects?
     # TODO: Fallback to some other backends: standard library ElementTree,
     # etc.?
 
-parse = _backend.parse
-items = _backend.items
+parse = backend.parse
+items = backend.items
