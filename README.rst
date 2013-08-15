@@ -2,9 +2,6 @@
 iXML - A simple iterative event-driven XML parser
 =================================================
 
-iXML is an iterative event-driven XML parser with a standard Python iterator interface.
-
-
 .. image:: https://secure.travis-ci.org/YAmikep/ixml.png
     :target: https://travis-ci.org/YAmikep/ixml
 
@@ -16,6 +13,10 @@ iXML is an iterative event-driven XML parser with a standard Python iterator int
 
 .. image:: https://pypip.in/d/ixml/badge.png
     :target: https://crate.io/packages/ixml/
+
+
+iXML is an iterative event-driven XML parser with a standard Python iterator interface.
+
 
 
 Docs
