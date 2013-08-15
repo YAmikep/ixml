@@ -4,7 +4,9 @@ Define the reusable sets of data to use for testing.
 
 XML_HEADER = """<?xml version="1.0" encoding="utf-8"?>"""
 
-# (name, xml, events_expected, path, objects_expected)
+# Sets of data test
+# Tuples (name, xml, events_expected, path, objects_expected)
+
 XML_TEST_DATA_SETS = [
     (
         'simple',
