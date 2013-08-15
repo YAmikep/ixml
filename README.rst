@@ -70,10 +70,10 @@ All examples will be using this XML document:
             <country>France</country>
             <language>French</language>
             <attractions>
-                <monument>Tour Eiffel</monument>
-                <monument>Arc de triomphe</monument>
-                <museum>Musee du Louvre</museum>
-                <museum>Musee du Quai Branly</museum>*
+                <monument>Eiffel Tower</monument>
+                <monument>Triumphal Arch</monument>
+                <museum>Louvre Museum</museum>
+                <museum>Quai Branly Museum</museum>
             </attractions>          
         </city>
         <city name="Dallas">
@@ -255,7 +255,7 @@ iXML currently requires the `lxml <http://lxml.de/>`_ library because there is n
 
 
 
-ObjecBuilder
+ObjectBuilder
 ------------
 The ``items`` function uses an ObjectBuilder to build an object while parsing the data.
 
