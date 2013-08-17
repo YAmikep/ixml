@@ -2,11 +2,10 @@ language: python
 python:
   - "2.7"
 install:
-  - "pip install nose nose-parameterized nose-cov"
-  - "pip install lxml"
+  - "pip install -r requirements_tests.txt"
   - "pip install python-coveralls"
   - "python setup.py develop"
 script:
-  - "nosetests --with-doctest --with-cov --cover-erase --cov-report term-missing "
+  - "nosetests --with-doctest --with-cov --cover-erase --cov-config .coveragerc --cov-report term-missing"
 after_success:
   - "coveralls"

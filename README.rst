@@ -277,7 +277,7 @@ Clone and install testing dependencies::
 
 Ensure tests pass::
 
-    $ ./runtests.sh
+    $ ./scripts/runtests.sh
 
 Or using tox::
 

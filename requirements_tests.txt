@@ -1,3 +1,11 @@
+# Include global requirements
+-r ./requirements.txt
+
+# Tests specific requirements
 nose
 nose-parameterized
+nose-cov
+coverage
+
+# Needed for testing
 lxml>=2.3,<3.3
