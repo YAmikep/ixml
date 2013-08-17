@@ -1,4 +1,4 @@
-# Include global requirements
+# Include requirements
 -r ./requirements.txt
 
 # Tests specific requirements
